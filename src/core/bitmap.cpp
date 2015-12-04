@@ -156,6 +156,66 @@ namespace bitmap {
 		return result;
 	}
 
+	int32_t
+		get_width(
+		const uid_t &id
+		)
+	{
+		TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "+bitmap::get_width");
+
+		SERIALIZE_CALL(std::recursive_mutex, __bitmap_lock);
+
+		int32_t width;
+		std::map<uid_t, component::bitmap_context>::iterator bitmap_iter;
+
+		if (!__bitmap_initialized) {
+			THROW_BITMAP_EXCEPTION(BITMAP_EXCEPTION_UNINITIALIZED);
+		}
+		bitmap_iter = __bitmap_map.find(id);
+
+		if (bitmap_iter == __bitmap_map.end()) {
+			THROW_BITMAP_EXCEPTION_MESSAGE(
+				BITMAP_EXCEPTION_ID_NOT_FOUND,
+				component::unique_id::convert_to_string(id)
+				);
+		}
+		width = bitmap_iter->second.get_width();
+
+		TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "-bitmap::get_width");
+
+		return width;
+	}
+
+	int32_t
+		get_height(
+		const uid_t &id
+		)
+	{
+		TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "+bitmap::get_height");
+
+		SERIALIZE_CALL(std::recursive_mutex, __bitmap_lock);
+
+		int32_t width;
+		std::map<uid_t, component::bitmap_context>::iterator bitmap_iter;
+
+		if (!__bitmap_initialized) {
+			THROW_BITMAP_EXCEPTION(BITMAP_EXCEPTION_UNINITIALIZED);
+		}
+		bitmap_iter = __bitmap_map.find(id);
+
+		if (bitmap_iter == __bitmap_map.end()) {
+			THROW_BITMAP_EXCEPTION_MESSAGE(
+				BITMAP_EXCEPTION_ID_NOT_FOUND,
+				component::unique_id::convert_to_string(id)
+				);
+		}
+		width = bitmap_iter->second.get_height();
+
+		TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "-bitmap::get_height");
+
+		return width;
+	}
+
 	uid_t 
 	create(
 		uint32_t width,

@@ -79,6 +79,14 @@ namespace bitmap {
 
 	size_t count(void);
 
+	int32_t get_width(
+		const uid_t &id
+		);
+
+	int32_t get_height(
+		const uid_t &id
+		);
+
 	uid_t create(
 		uint32_t width,
 		uint32_t height

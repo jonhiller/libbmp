@@ -99,6 +99,10 @@ namespace bitmap {
 					uint32_t y
 					);
 
+				int32_t get_width(void);
+
+				int32_t get_height(void);
+
 				void read(
 					const std::string &path
 					);

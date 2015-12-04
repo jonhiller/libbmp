@@ -183,6 +183,34 @@ namespace bitmap {
 			return _image.at(PIXEL_COORDINATE(x, y, _header.information.image_width));
 		}
 
+		int32_t 
+			_bitmap_context::get_width(
+			void
+			)
+		{
+			TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "+_bitmap_context::get_width");
+
+			SERIALIZE_CALL(std::recursive_mutex, _bitmap_context_lock);
+
+			TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "-_bitmap_context::get_width");
+
+			return _header.information.image_width;
+		}
+
+		int32_t
+			_bitmap_context::get_height(
+			void
+			)
+		{
+			TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "+_bitmap_context::get_height");
+
+			SERIALIZE_CALL(std::recursive_mutex, _bitmap_context_lock);
+
+			TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "-_bitmap_context::get_height");
+
+			return _header.information.image_height;
+		}
+
 		void 
 		_bitmap_context::read(
 			const std::string &path
